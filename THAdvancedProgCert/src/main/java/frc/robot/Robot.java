@@ -8,6 +8,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.autonomous.TurnToAngleGyro;
+import frc.robot.sensors.Gyro;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -17,6 +20,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static Gyro gyro = Gyro.getInstance();
   public static Drivetrain drivetrain = Drivetrain.getInstance();
 
   /**
@@ -30,11 +34,12 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     // rotate 90 degress in autonomous mode
-    // TODO
+    new TurnToAngleGyro(90);
   }
 
   @Override
   public void autonomousPeriodic() {
+    Scheduler.getInstance().run();
   }
 
   @Override
@@ -43,6 +48,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+    Scheduler.getInstance().run();
   }
 
   @Override
@@ -51,6 +57,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void testPeriodic() {
+    Scheduler.getInstance().run();
   }
 
 }
